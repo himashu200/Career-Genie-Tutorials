@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Genie Tutorials</title>
+  <!-- Font Awesome Icons (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+    body {
+      background: #f8faff;
+      color: #1e2b3c;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* header / nav */
+    header {
+      background: linear-gradient(145deg, #0b1a2e, #132b44);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo h1 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .logo i {
+      color: #f7d44a;
+      margin-right: 8px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #f0f4fa;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+      font-size: 1.05rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      border-bottom-color: #f7d44a;
+      color: #ffea9a;
+    }
+    /* sections */
+    section {
+      padding: 50px 0 30px;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #0b1a2e;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .section-title:after {
+      content: '';
+      width: 70px;
+      height: 5px;
+      background: #f7d44a;
+      display: block;
+      margin-top: 8px;
+      border-radius: 8px;
+    }
+    .card {
+      background: white;
+      padding: 32px 34px;
+      border-radius: 28px;
+      box-shadow: 0 12px 30px rgba(0, 20, 40, 0.08);
+      margin-bottom: 30px;
+      transition: 0.2s;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 1.15rem;
+      padding: 10px 0;
+      border-bottom: 1px solid #eef3f9;
+    }
+    .contact-detail i {
+      width: 30px;
+      color: #1f4a7a;
+      font-size: 1.5rem;
+    }
+    .address-block {
+      background: #eef5fd;
+      padding: 20px 24px;
+      border-radius: 20px;
+      margin-top: 12px;
+      border-left: 6px solid #f7d44a;
+    }
+    .policy-list {
+      list-style: none;
+    }
+    .policy-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #e7edf6;
+    }
+    .policy-list li:before {
+      content: "▹ ";
+      color: #f7d44a;
+      font-weight: bold;
+    }
+    .footer {
+      background: #0b1a2e;
+      color: #d3deed;
+      padding: 28px 0;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .footer a {
+      color: #f7d44a;
+      text-decoration: none;
+      margin: 0 12px;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .footer .copyright {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #2a4058;
+      padding-top: 18px;
+    }
+    .btn {
+      display: inline-block;
+      background: #f7d44a;
+      color: #0b1a2e;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: #ffde6b;
+      transform: scale(1.02);
+    }
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+    .highlight {
+      background: #fcf3d6;
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-weight: 500;
+    }
+    @media (max-width: 780px) {
+      .header-flex {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .nav-links {
+        gap: 16px;
+        width: 100%;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-flex">
+      <div class="logo">
+        <h1><i class="fas fa-hat-wizard"></i> Career Genie</h1>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#" class="active" data-page="home">Home</a>
+        <a href="#" data-page="about">About</a>
+        <a href="#" data-page="contact">Contact</a>
+        <a href="#" data-page="privacy">Privacy</a>
+        <a href="#" data-page="terms">Terms</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+      <div class="card">
+        <h2 class="section-title">Welcome to Career Genie Tutorials</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 24px;"><i class="fas fa-graduation-cap" style="color: #f7d44a;"></i>  Transforming ordinary billets to customary Aces.</p>
+        <div style="background: #e4edf9; padding: 20px 24px; border-radius: 24px; margin: 20px 0;">
+          <p><strong><i class="fas fa-map-pin"></i> Address:</strong> Shop 01, Simran Plaza, Sector 44, Plot no. 144, Seawoods, Navi Mumbai – 400706</p>
+          <p><strong><i class="fas fa-phone-alt"></i> Contact:</strong> 9082539373</p>
+          <p><strong><i class="fas fa-envelope"></i> Email:</strong> marathe.prachi7@gmail.com</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 18px;">
+          <a href="#" class="btn" data-page="about"><i class="fas fa-users"></i> About us</a>
+          <a href="#" class="btn" data-page="contact"><i class="fas fa-comment"></i> Get in touch</a>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 20px;">
+        <div class="card" style="text-align: center;"><i class="fas fa-book-open" style="font-size: 2.5rem; color: #1f4a7a;"></i><h3>Expert Guidance</h3><p>Personalized mentorship for every learner.</p></div>
+        <div class="card" style="text-align: center;"><i class="fas fa-chart-line" style="font-size: 2.5rem; color: #1f4a7a;"></i><h3>Skill Building</h3><p>From basics to advanced, we craft your path.</p></div>
+        <div class="card" style="text-align: center;"><i class="fas fa-star" style="font-size: 2.5rem; color: #f7d44a;"></i><h3>Proven Results</h3><p>Transforming careers one step at a time.</p></div>
+      </div>
+    </section>
+
+    <!-- ABOUT PAGE -->
+    <section id="about" class="page">
+      <div class="card">
+        <h2 class="section-title">About Career Genie Tutorials</h2>
+        <p style="font-size: 1.2rem;"><i class="fas fa-quote-left" style="color: #f7d44a; font-size: 2rem; vertical-align: middle;"></i> We are a bunch of highly motivated individuals believing in transforming ordinary billets to customary Aces.</p>
+        <div style="margin: 28px 0; background: #f1f7fe; padding: 22px 26px; border-radius: 24px;">
+          <p><strong>📍 Our location:</strong> Shop 01, Simran Plaza, Sector 44, Plot no. 144, Seawoods, Navi Mumbai – 400706</p>
+          <p><strong>📞 Connect:</strong> 9082539373  |  <strong>✉️</strong> marathe.prachi7@gmail.com</p>
+        </div>
+        <p>We believe education is the most powerful tool to reshape futures. Our team brings years of industry and teaching experience to craft courses that go beyond textbooks. Whether you are starting out or looking to upskill, Career Genie Tutorials is your trusted partner.</p>
+        <div style="margin-top: 20px;"><span class="highlight"><i class="fas fa-check-circle"></i> 100% learner-centric</span> <span class="highlight"><i class="fas fa-check-circle"></i> practical approach</span></div>
+      </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section id="contact" class="page">
+      <div class="card">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="grid-2">
+          <div>
+            <div class="contact-detail"><i class="fas fa-phone-alt"></i> <span><strong>Mobile:</strong> 9082539373</span></div>
+            <div class="contact-detail"><i class="fas fa-envelope"></i> <span><strong>Email:</strong> marathe.prachi7@gmail.com</span></div>
+            <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <span><strong>Address:</strong> Shop 01, Simran Plaza, Sector 44, Plot no. 144, Seawoods, Navi Mumbai</span></div>
+            <div class="contact-detail"><i class="fas fa-mail-bulk"></i> <span><strong>Pincode:</strong> 400706</span></div>
+            <div style="margin-top: 18px;">
+              <a href="tel:9082539373" class="btn" style="background: #1f4a7a; color: white;"><i class="fas fa-phone"></i> Call now</a>
+              <a href="mailto:marathe.prachi7@gmail.com" class="btn" style="background: #1f4a7a; color: white; margin-left: 8px;"><i class="fas fa-paper-plane"></i> Email</a>
+            </div>
+          </div>
+          <div class="address-block">
+            <h4><i class="fas fa-store-alt"></i> Visit our center</h4>
+            <p style="margin: 12px 0; font-size: 1.1rem;">Shop 01, Simran Plaza,<br> Sector 44, Plot no. 144,<br> Seawoods, Navi Mumbai – 400706</p>
+            <p><i class="fas fa-clock"></i> Mon–Sat: 9:00 AM – 8:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVACY POLICY -->
+    <section id="privacy" class="page">
+      <div class="card">
+        <h2 class="section-title">Privacy Policy</h2>
+        <p><strong>Last updated:</strong> 2026</p>
+        <p>At Career Genie Tutorials, we value your privacy. This policy outlines how we collect, use, and protect your information.</p>
+        <ul class="policy-list" style="margin-top: 18px;">
+          <li><strong>Information Collection:</strong> We collect personal details (name, email, phone) only when voluntarily provided via contact forms or enrollment.</li>
+          <li><strong>Use of Information:</strong> Data is used to provide services, send updates, and improve our offerings. We do not share your data with third parties without consent.</li>
+          <li><strong>Data Security:</strong> We implement industry-standard measures to safeguard your information.</li>
+          <li><strong>Cookies:</strong> Our site may use cookies to enhance user experience; you can disable them in browser settings.</li>
+          <li><strong>Children's Privacy:</strong> We do not knowingly collect data from minors under 13 without parental consent.</li>
+          <li><strong>Policy Updates:</strong> Any changes will be posted on this page. Continued use implies acceptance.</li>
+        </ul>
+        <p style="margin-top: 20px;">For any privacy concerns, contact us at marathe.prachi7@gmail.com</p>
+      </div>
+    </section>
+
+    <!-- TERMS & CONDITIONS -->
+    <section id="terms" class="page">
+      <div class="card">
+        <h2 class="section-title">Terms &amp; Conditions</h2>
+        <p><strong>Effective:</strong> 2026</p>
+        <p>By using the Career Genie Tutorials website and services, you agree to the following terms:</p>
+        <ul class="policy-list" style="margin-top: 18px;">
+          <li><strong>Acceptance:</strong> These terms govern your access and use of our platform. If you disagree, please refrain from using our services.</li>
+          <li><strong>Services:</strong> We provide educational content and guidance. All material is for personal, non-commercial use unless otherwise specified.</li>
+          <li><strong>User Obligations:</strong> You agree to provide accurate information and not misuse our services or engage in disruptive behavior.</li>
+          <li><strong>Intellectual Property:</strong> All content (text, graphics, logos) is owned by Career Genie Tutorials. Unauthorized reproduction is prohibited.</li>
+          <li><strong>Limitation of Liability:</strong> We are not liable for any indirect damages arising from the use of our services.</li>
+          <li><strong>Modifications:</strong> We reserve the right to update these terms; continued use constitutes acceptance of changes.</li>
+        </ul>
+        <p style="margin-top: 20px;">For questions, please reach out via marathe.prachi7@gmail.com</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER with copyright -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <a href="#" data-page="home">Home</a> | 
+        <a href="#" data-page="about">About</a> | 
+        <a href="#" data-page="contact">Contact</a> | 
+        <a href="#" data-page="privacy">Privacy</a> | 
+        <a href="#" data-page="terms">Terms</a>
+      </div>
+      <div class="copyright">
+        <i class="far fa-copyright"></i> 2026 Career Genie Tutorials. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Get all nav links and pages
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const pages = document.querySelectorAll('.page');
+      
+      // function to switch page
+      function showPage(pageId) {
+        // hide all pages
+        pages.forEach(p => p.classList.remove('active'));
+        // show target page
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active');
+        
+        // update nav active class
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.dataset.page === pageId) {
+            link.classList.add('active');
+          }
+        });
+        // scroll to top smoothly
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // event listeners for nav links
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const page = this.dataset.page;
+          if (page) showPage(page);
+        });
+      });
+
+      // also handle any 'btn' or other links that have data-page attribute
+      document.querySelectorAll('[data-page]').forEach(el => {
+        // but skip if already handled (navLinks)
+        if (el.closest('.nav-links')) return;
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          const page = this.dataset.page;
+          if (page) showPage(page);
+        });
+      });
+
+      // set default page (home) active if none
+      // (already active in html, but ensure nav is active)
+      const currentPage = document.querySelector('.page.active');
+      if (!currentPage) {
+        showPage('home');
+      } else {
+        // sync nav
+        const id = currentPage.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.page === id);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
